@@ -11,4 +11,4 @@ https://www.youtube.com/c/%E5%8C%BA%E5%9D%97%E6%99%AE%E6%8B%89%E6%96%AF
  
 # Pine教学交流 
  
-交流群：http://T.ME/tvcbot8
+交流群：http://t.me/tvcbot8
