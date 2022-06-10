@@ -1,0 +1,25 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/ 注释
+// © blockplus
+
+//@version=5
+indicator("PINE教学2：金叉死叉与均线区域填充", overlay=true) // strategy/library
+
+// 求均线
+ma12 = ta.ema(close, 12)// Simple Moving Average
+ma26 = ta.ema(close, 26)// Simple Moving Average
+
+// 画均线
+line1 = plot(ma12, color=color.red)
+line2 = plot(ma26, color=color.blue)
+
+// 金叉死叉信号
+gold = ta.crossover(ma12, ma26) // ma12 > ma26 and ma12[1] < ma26[1] 等价于 ta.crossover(ma12, ma26)
+dead = ta.crossunder(ma12, ma26) // ma12 < ma26 and ma12[1] > ma26[1] 等价于 ta.crossunder(ma12, ma26)
+
+// 金叉死叉信号绘制
+plotchar(gold, char="买", location=location.belowbar, color=color.green, size=size.tiny)
+plotchar(dead, char="卖", location=location.abovebar, color=color.red, size=size.tiny)
+
+// 填充均线背景
+_color = ma12>ma26 ? color.new(#ff0000, 20) : color.new(#00ff00, 20) // 如果ma12>ma26 那么_color=color.green，否则_color=color.red
+fill(line1, line2, color=_color)
