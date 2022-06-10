@@ -1,0 +1,12 @@
+// This source code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/ 注释
+// © blockplus
+
+//@version=5
+indicator("我的腳本", overlay=true) // strategy/library
+
+// technical analysis 技术分析
+ma7 = ta.sma(close, 7)// Simple Moving Average
+ma20 = ta.sma(close, 20)// Simple Moving Average
+
+plot(ma7, color=color.red, linewidth=2)
+plot(ma20, color=color.green , linewidth=2)
