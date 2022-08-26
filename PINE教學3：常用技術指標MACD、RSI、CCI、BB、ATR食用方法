@@ -1,0 +1,30 @@
+//@version=5
+indicator("PINE教學4：常用技術指標MACD、RSI、CCI、BB、ATR食用方法", overlay=false)
+
+// Plot MACD
+// [macdLine, signalLine, histLine] = ta.macd(close, 12, 26, 9)
+// plot(macdLine, color=color.blue)
+// plot(signalLine, color=color.orange)
+// plot(histLine, color=color.red, style=plot.style_histogram)
+
+// Your MACD
+
+macd(src, fastLen, slowLen, signalLen) =>
+    fastMA = ta.ema(src, 12)
+    slowMA = ta.ema(src, 26)
+    macd = fastMA - slowMA
+    signal = ta.ema(macd, 9)
+    hist = macd - signal
+    [macd, signal, hist]
+    // plot(macd, color=color.blue)
+    // plot(signal, color=color.orange)
+    // plot(hist, color=color.red, style=plot.style_histogram)
+
+[macdLine, signalLine, histLine] = ta.macd(close, 12, 26, 9)
+
+alert("Pric222e (" + str.tostring(close) + ") crossed over MA (" + str.tostring(close) +  ").", alert.freq_once_per_bar)
+alertcondition(ta.crossover(macdLine, signalLine), "CO", "CO")
+
+plot(macdLine, color=color.blue)
+plot(signalLine, color=color.orange)
+plot(histLine, color=histLine>histLine[1]?color.green:color.red, style=plot.style_histogram)
